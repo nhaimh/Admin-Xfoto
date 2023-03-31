@@ -6,39 +6,25 @@
         <div class="modal-content">
           <header class="modal-header">
             <a>Show Detail</a>
-            <b-button @click="$emit('close-modal')">X</b-button>
           </header>
           <section class="modal-body">
-            <div style="margin: 15px 0px">
-              <table class="table bg-light">
-                <thead>
-                  <tr>
-                    <th class="thh" scope="col">#ID</th>
-                    <th class="thh" scope="col">Tiêu đề</th>
-                    <th class="thh" scope="col">Demo Descriptions</th>
-                    <th class="thh" scope="col">Descriptions</th>
-                    <th class="thh" scope="col">Thời gian tạo</th>
-                    <th class="thh" scope="col">Hình ảnh</th>
-                    <th class="thh" scope="col">Tác giả</th>
-                    <th class="thh" scope="col">Id Tác giả</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <td class="ttd" scope="col">{{ Blo.id }}</td>
-                  <td class="ttd" scope="col">{{ Blo.title }}</td>
-                  <td class="ttd" scope="col">
-                    <textarea>{{ Blo.demoDescription }}</textarea>
-                  </td>
-                  <td class="ttd">
-                    <textarea>{{ Blo.description }}</textarea>
-                  </td>
-                  <td class="ttd">{{ Blo.createdDate }}</td>
-                  <td class="ttd">{{ Blo.image }}</td>
-                  <td class="ttd">{{ Blo.authorName }}</td>
-                  <td class="ttd">{{ Blo.atuthorId }}</td>
-                  <td class="ttd"></td>
-                </tbody>
-              </table>
+            <div class="form-edit">
+              <a>#ID</a>
+              <b-input type="text" :disabled="true" v-model="Blo.id" />
+              <a>Tiêu đề</a>
+              <b-input type="text" :disabled="true" v-model="Blo.title" />
+              <a>Demo description</a>
+              <b-input type="text" v-model="Blo.demoDescription" />
+              <a>Description</a>
+              <b-input type="text" v-model="Blo.description" />
+              <a>Thời gian tạo</a>
+              <b-input type="text" :disabled="true" v-model="Blo.createdDate" />
+              <a>Hình ảnh</a>
+              <b-input type="text" :disabled="true" v-model="Blo.image" />
+              <a>ID Tác giả</a>
+              <b-input type="text" :disabled="true" v-model="Blo.atuthorId" />
+              <a>Tác giả</a>
+              <b-input type="text" :disabled="true" v-model="Blo.authorName" />
             </div>
           </section>
           <footer class="modal-footer">

@@ -5,33 +5,45 @@ const createStore = () => {
     return new Vuex.Store({
         state: {
             Duans: [],
-            Duan: {},
             SanPham: [],
             Blog: [],
             Blo: {},
-            Blogg: [],
-            Anh: {}
+            Anh: {},
+            DAimgae: [],
+            DAi: {},
 
         },
         mutations: {
+
+            // Dự Án / Dự Án image
+
             GET_DUANS(state, Duans) {
                 state.Duans = Duans
             },
-            GET_DUAN(state, Duan) {
-                state.Duan = Duan
+            GET_I(state, DAimgae) {
+                state.DAimgae = DAimgae
             },
+            GET_DAI(state, DAi) {
+                state.DAi = DAi
+            },
+            DELETE_I(state, id) {
+                state.DAimgae = state.DAimgae.filter((DAimgae) => DAimgae.id !== id)
+            },
+            ADDI(state, i) {
+                state.DAimgae.unshift(i)
+            },
+
+            //Sản Phẩm
             GET_SP(state, SanPham) {
                 state.SanPham = SanPham
             },
             GET_GIDAY(state, Anh) {
                 state.Anh = Anh
-            }
-            ,
+            },
+
+            //Blog
             GET_BLOG(state, Blog) {
                 state.Blog = Blog
-            },
-            GET_BLOGG(state, Blogg) {
-                state.Blogg = Blogg
             },
             GET_BYIDBLOG(state, Blo) {
                 state.Blo = Blo
@@ -43,16 +55,17 @@ const createStore = () => {
                 state.Blog.unshift(blog)
             },
             UPBLOG(state, blog) {
-                state.Blog.unshift(blog)
-            }
+                state.Blog.push(blog)
+            },
 
         },
         getters: {
             Duans(state) {
                 return state.Duans
             },
-            Duan(state) {
-                return state.Duan
+
+            DAimgae(state) {
+                return state.DAimgae
             },
             SanPham(state) {
                 return state.SanPham
@@ -63,12 +76,13 @@ const createStore = () => {
             Blog(state) {
                 return state.Blog
             },
-            Blogg(state) {
-                return state.Blogg
-            },
+
             Blo(state) {
                 return state.Blo
             },
+            DAi(state) {
+                return state.DAi
+            }
 
         },
         actions: {
@@ -82,15 +96,49 @@ const createStore = () => {
                     console.log(err)
                 }
             },
-            async getbyidDuan({ commit }, id) {
+
+            async getImage({ commit }, params) {
                 try {
-                    const response = await axios.get(`http://192.168.1.82:7654/api/DuAn/id?id=${id}`)
-                    commit("GET_DUAN", response.data)
+                    const response = await axios.post(`http://192.168.1.82:7654/api/DuAn/getall`, params)
+                    commit("GET_I", response.data)
                 } catch (error) {
-                    // eslint-disable-next-line no-console
-                    console.log(error);
+                    console.log(error)
                 }
             },
+            async getByIDI({ commit }, id) {
+                try {
+                    const response = await axios.get(`http://192.168.1.82:7654/api/DuAn/DuAnImage/id?id=${id}`)
+                    commit("GET_DAI", response.data)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            async deleteI({ commit }, id) {
+                try {
+                    await axios.delete(`http://192.168.1.82:7654/api/DuAn/DuAnImage/id?id=${id}`);
+                    commit("DELETE_I", id)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            async addI({ commit }, i) {
+                try {
+                    await axios.post(`http://192.168.1.82:7654/api/DuAnImage`, i)
+                    commit("ADDI", i)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            async UpdateI({ commit }, blog) {
+                try {
+                    await axios.put(`http://192.168.1.82:7654/api/DuAnImage`, blog)
+                    commit("UPBLOG", blog)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+
+
             async getSanPham({ commit }) {
                 try {
                     const response = await axios.get(`http://192.168.1.82:7654/api/SanPham`)
@@ -108,20 +156,12 @@ const createStore = () => {
                     console.log(error)
                 }
             },
+
+
             async getBlog({ commit }, params) {
                 try {
                     const response = await axios.post(`http://192.168.1.82:7654/api/Blog/getall`, params)
                     commit("GET_BLOG", response.data)
-
-                } catch (err) {
-                    // eslint-disable-next-line no-console
-                    console.log(err)
-                }
-            },
-            async getBlogSide({ commit }, params) {
-                try {
-                    const response = await axios.post(`http://192.168.1.82:7654/api/Blog/getall`, params)
-                    commit("GET_BLOGG", response.data)
 
                 } catch (err) {
                     // eslint-disable-next-line no-console
@@ -155,7 +195,7 @@ const createStore = () => {
             },
             async UpdateBlog({ commit }, blog) {
                 try {
-                    await axios.put(`http://192.168.1.82:7654/api/Blog/id?id=${id}`, blog)
+                    await axios.put(`http://192.168.1.82:7654/api/Blog`, blog)
                     commit("UPBLOG", blog)
                 } catch (error) {
                     console.log(error)

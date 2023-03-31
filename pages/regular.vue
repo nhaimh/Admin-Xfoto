@@ -30,6 +30,12 @@
             label="Salary"
             property="salary"
           ></el-table-column>
+          <b-button-group>
+            <b-button size="sm" variant="outline-primary"> Chi tiết </b-button>
+
+            <b-button size="sm" variant="primary"> Sửa </b-button>
+            <b-button variant="danger" size="sm"> Xóa </b-button>
+          </b-button-group>
         </el-table>
       </card>
     </div>
@@ -72,61 +78,67 @@
             label="Salary"
             property="salary"
           ></el-table-column>
+          <b-button-group>
+            <b-button size="sm" variant="outline-primary"> Chi tiết </b-button>
+
+            <b-button size="sm" variant="primary"> Sửa </b-button>
+            <b-button variant="danger" size="sm"> Xóa </b-button>
+          </b-button-group>
         </el-table>
       </card>
     </div>
   </div>
 </template>
 <script>
-import { Table, TableColumn } from 'element-ui';
+import { Table, TableColumn } from "element-ui";
 
 export default {
-  name: 'regular',
+  name: "regular",
   components: {
     [Table.name]: Table,
-    [TableColumn.name]: TableColumn
+    [TableColumn.name]: TableColumn,
   },
   data() {
     return {
       tableData: [
         {
           id: 1,
-          name: 'Dakota Rice',
-          salary: '$36.738',
-          country: 'Niger',
-          city: 'Oud-Turnhout'
+          name: "Dakota Rice",
+          salary: "$36.738",
+          country: "Niger",
+          city: "Oud-Turnhout",
         },
         {
           id: 2,
-          name: 'Minerva Hooper',
-          salary: '$23,789',
-          country: 'Curaçao',
-          city: 'Sinaai-Waas'
+          name: "Minerva Hooper",
+          salary: "$23,789",
+          country: "Curaçao",
+          city: "Sinaai-Waas",
         },
         {
           id: 3,
-          name: 'Sage Rodriguez',
-          salary: '$56,142',
-          country: 'Netherlands',
-          city: 'Baileux'
+          name: "Sage Rodriguez",
+          salary: "$56,142",
+          country: "Netherlands",
+          city: "Baileux",
         },
         {
           id: 4,
-          name: 'Philip Chaney',
-          salary: '$38,735',
-          country: 'Korea, South',
-          city: 'Overland Park'
+          name: "Philip Chaney",
+          salary: "$38,735",
+          country: "Korea, South",
+          city: "Overland Park",
         },
         {
           id: 5,
-          name: 'Doris Greene',
-          salary: '$63,542',
-          country: 'Malawi',
-          city: 'Feldkirchen in Kärnten'
-        }
-      ]
+          name: "Doris Greene",
+          salary: "$63,542",
+          country: "Malawi",
+          city: "Feldkirchen in Kärnten",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 <style>

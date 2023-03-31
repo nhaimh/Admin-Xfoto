@@ -1,5 +1,8 @@
 <template>
   <div>
+    <b-button size="sm" variant="outline-primary" @click="showEdit = true">
+      Thêm Mới Bài Viết</b-button
+    >
     <table class="table">
       <thead>
         <tr>
@@ -35,7 +38,7 @@
               <b-button
                 size="sm"
                 variant="primary"
-                @click="getByIdBlog(a.id), (showEdit = true)"
+                @click="(showEdit = true), (id = a.id)"
               >
                 Sửa
               </b-button>
@@ -58,7 +61,12 @@
       v-show="showDetail"
       @close-modal="showDetail = false"
     />
-    <EditBV v-if="showEdit" v-show="showEdit" @close-modal="closeEdit" />
+    <EditBV
+      v-if="showEdit"
+      v-show="showEdit"
+      @close-modal="closeEdit"
+      :id="id"
+    />
   </div>
 </template>
 

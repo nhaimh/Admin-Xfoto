@@ -25,18 +25,18 @@
         </sidebar-item>
         <sidebar-item
           :link="{
-            name: $t('sidebar.maps'),
+            name: 'Dự Án',
             icon: 'tim-icons icon-pin',
-            path: '/google',
+            path: '/DuAn',
           }"
         >
         </sidebar-item>
 
         <sidebar-item
           :link="{
-            name: $t('sidebar.notifications'),
+            name: 'Sản Phẩm Dự Án',
             icon: 'tim-icons icon-bell-55',
-            path: '/notifications',
+            path: '/SPDuAn',
           }"
         >
         </sidebar-item>

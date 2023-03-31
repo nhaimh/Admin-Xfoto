@@ -5,15 +5,12 @@
         <div class="modal-overlay" @click="$emit('close-modal')"></div>
         <div class="modal-content">
           <header class="modal-header">
-            <h3>Modal Title</h3>
-            <b-button @click="$emit('close-modal')" variant="danger"
-              >X</b-button
-            >
+            <h3>Add/Edit</h3>
           </header>
           <section class="modal-body">
             <div class="form-edit">
               <a>#ID</a>
-              <b-input type="text" v-model="Blo.id" />
+              <b-input type="number" :disabled="true" v-model="Blo.id" />
               <a>Tiêu đề</a>
               <b-input type="text" v-model="Blo.title" />
               <a>Demo description</a>
@@ -21,11 +18,11 @@
               <a>Description</a>
               <b-input type="text" v-model="Blo.description" />
               <a>Thời gian tạo</a>
-              <b-input type="text" v-model="Blo.createdDate" />
+              <b-input type="datetime-local" v-model="Blo.createdDate" />
               <a>Hình ảnh</a>
               <b-input type="text" v-model="Blo.image" />
               <a>ID Tác giả</a>
-              <b-input type="text" v-model="Blo.atuthorId" />
+              <b-input type="number" v-model="Blo.atuthorId" />
               <a>Tác giả</a>
               <b-input type="text" v-model="Blo.authorName" />
             </div>
@@ -34,7 +31,7 @@
             <b-button @click="$emit('close-modal')" variant="danger"
               >Close</b-button
             >
-            <b-button variant="outline-primary" @click="UpdateBlog(Blo.id, Blo)"
+            <b-button variant="outline-primary" @click="updateBlogg()"
               >Update</b-button
             >
           </footer>
@@ -49,7 +46,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "NuxtBlackDashboardMasterEditBaiViet",
-
+  props: ["id"],
   data() {
     return {
       showEdit: true,
@@ -58,14 +55,16 @@ export default {
   computed: {
     ...mapGetters(["Blo"]),
   },
+  created() {
+    this.getByIdBlog(this.id);
+  },
   mounted() {},
 
   methods: {
     ...mapActions(["getByIdBlog", "addBlog", "UpdateBlog"]),
-    updateBlog(id) {
-      console.log(id);
-      if (this.Blo.id) {
-        this.UpdateBlog(this.Blo.id, {
+    updateBlogg() {
+      if (this.id) {
+        this.UpdateBlog({
           id: this.Blo.id,
           title: this.Blo.title,
           demoDescription: this.Blo.demoDescription,
@@ -73,19 +72,20 @@ export default {
           createdDate: this.Blo.createdDate,
           image: this.Blo.image,
           atuthorId: this.Blo.atuthorId,
-          authorName: this.authorName,
+          authorName: this.Blo.authorName,
         });
+        this.showEdit = false;
+        this.$emit("close-modal", true);
         return;
       }
       this.addBlog({
-        id: this.Blo.id,
         title: this.Blo.title,
         demoDescription: this.Blo.demoDescription,
         description: this.Blo.description,
         createdDate: this.Blo.createdDate,
         image: this.Blo.image,
         atuthorId: this.Blo.atuthorId,
-        authorName: this.authorName,
+        authorName: this.Blo.authorName,
       });
       this.showEdit = false;
       this.$emit("close-modal", true);
