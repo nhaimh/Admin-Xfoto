@@ -32,9 +32,14 @@ export default {
     return {
       tableData: [
         {
+          title: "add meta tags for Xfoto client",
+          description: "10/04/2023",
+          done: true,
+        },
+        {
           title: "add database authentication in postgres",
           description: "07/04/2023",
-          done: false,
+          done: true,
         },
         {
           title: "Create authentication in nuxtjs",

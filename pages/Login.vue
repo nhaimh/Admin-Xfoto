@@ -2,7 +2,12 @@
   <div class="row">
     <div class="col-3"></div>
     <div class="col-6 form-input">
-      <a slot="header" class="title">Login</a>
+      <a
+        slot="header"
+        class="title"
+        style="color: aliceblue !important; font-size: 100px"
+        >Login</a
+      >
       <br />
       <br />
       <div>
@@ -88,9 +93,5 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: 100px;
-}
-a {
-  color: aliceblue !important;
-  font-size: 100px;
 }
 </style>
