@@ -4,10 +4,9 @@
       <div class="modal-dialog" role="document">
         <div class="modal-overlay" @click="$emit('close-modal')"></div>
         <div class="modal-content">
-          <header class="modal-header">
-            <h3>Add/Edit</h3>
-          </header>
           <section class="modal-body">
+            <h1 v-if="Blo.id == null">Add new Blog</h1>
+            <h1 v-else>Edit Blog</h1>
             <div class="form-edit">
               <a>#ID</a>
               <b-input type="number" :disabled="true" v-model="Blo.id" />

@@ -16,7 +16,7 @@
           <span class="navbar-toggler-bar bar3"></span>
         </button>
       </div>
-      <a class="navbar-brand ml-xl-3 ml-5" href="#pablo">{{ routeName }}</a>
+      <a class="navbar-brand ml-xl-3 ml-5" href="/">{{ routeName }}</a>
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
@@ -73,7 +73,7 @@
         </li>
         <div class="dropdown-divider"></div>
         <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Log out</a>
+          <a class="nav-item dropdown-item" @click="userLogouttt()">Log out</a>
         </li>
       </base-dropdown>
     </ul>
@@ -82,6 +82,7 @@
 <script>
 import { CollapseTransition } from "vue2-transitions";
 import { BaseNav } from "@/components";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -109,6 +110,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["userLogout"]),
     capitalizeFirstLetter(string) {
       if (!string || typeof string !== "string") {
         return "";
@@ -124,11 +126,15 @@ export default {
     toggleMenu() {
       this.showMenu = !this.showMenu;
     },
+    userLogouttt() {
+      this.userLogout();
+      this.$router.push("/login");
+    },
   },
 };
 </script>
-<style scoped>
+<!-- <style scoped>
 .top-navbar {
   top: 0px;
 }
-</style>
+</style> -->

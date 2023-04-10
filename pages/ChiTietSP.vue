@@ -1,23 +1,25 @@
 <template>
   <div>
     <b-button size="sm" variant="outline-primary" @click="showEdit = true">
-      Thêm Mới SP Dự Án</b-button
+      Thêm Mới Image SP</b-button
     >
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#ID</th>
+          <th scope="col">Descrition</th>
           <th scope="col">Image After</th>
           <th scope="col">Image Before</th>
-          <th scope="col">Id Dự Án</th>
+          <th scope="col">Id Sản Phẩm</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="a in DAimgae.data" :key="a.index">
+        <tr v-for="a in SanPhamDetail.data" :key="a.index">
           <td scope="col">{{ a.id }}</td>
+          <td scope="col">{{ a.description }}</td>
           <td scope="col">{{ a.imageA }}</td>
           <td scope="col">{{ a.imageB }}</td>
-          <td scope="col">{{ a.duanId }}</td>
+          <td scope="col">{{ a.sanPhamId }}</td>
           <td>
             <b-button-group>
               <b-button
@@ -27,7 +29,7 @@
               >
                 Sửa
               </b-button>
-              <b-button variant="danger" size="sm" @click="deleteIm(a.id)">
+              <b-button variant="danger" size="sm" @click="deleteSP(a.id)">
                 Xóa
               </b-button>
             </b-button-group>
@@ -36,12 +38,12 @@
       </tbody>
       <b-pagination
         v-model="params.pageIndex"
-        :total-rows="DAimgae.totalRows"
+        :total-rows="SanPhamDetail.totalRows"
         :per-page="params.pageSize"
         aria-controls="my-table"
       ></b-pagination>
     </table>
-    <EditDA
+    <detailSP
       v-if="showEdit"
       v-show="showEdit"
       @close-modal="closeEdit"
@@ -52,29 +54,29 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import EditDA from "~/components/DuAn/EditDAimgae.vue";
+import detailSP from "~/components/SanPham/DetailSP.vue";
 export default {
-  name: "NuxtBlackDashboardMasterNotifications",
+  name: "NuxtBlackDashboardMasterTypography",
 
   data() {
     return {
       params: {
-        pageSize: 6,
+        pageSize: 10,
         pageIndex: 1,
         status: 0,
-        keyWord: "a",
+        keyWord: null,
       },
       showEdit: false,
     };
   },
   components: {
-    EditDA,
+    detailSP,
   },
   computed: {
-    ...mapGetters(["DAimgae"]),
+    ...mapGetters(["SanPhamDetail"]),
   },
   created() {
-    this.getImage(this.params);
+    this.getSPd(this.params);
   },
   mounted() {},
   watch: {
@@ -82,19 +84,19 @@ export default {
       (this.params.pageIndex = this.params.pageIndex
         ? this.params.pageIndex
         : 1),
-        this.getImage(this.params);
+        this.getSPd(this.params);
     },
   },
   methods: {
-    ...mapActions(["getImage", "deleteI"]),
-    deleteIm(id) {
-      this.deleteI(id);
-      this.getImage(this.params);
+    ...mapActions(["getSPd", "deleteD"]),
+    deleteSP(id) {
+      this.deleteD(id);
+      this.getSPd(this.params);
       this.params.pageIndex = 1;
     },
     closeEdit(reload) {
       this.showEdit = false;
-      this.getImage(this.params);
+      this.getSPd(this.params);
       this.params.pageIndex = 1;
     },
   },

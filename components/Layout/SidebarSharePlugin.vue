@@ -4,7 +4,7 @@
       <a data-toggle="dropdown" class="settings-icon">
         <i class="fa fa-cog fa-2x" @click="toggleDropDown"> </i>
       </a>
-      <ul class="dropdown-menu" :class="{ show: isOpen }">
+      <ul class="dropdown-menu" style="height: 200px" :class="{ show: isOpen }">
         <li class="header-title">Sidebar Background</li>
         <li class="adjustments-line">
           <a class="switch-trigger background-color">

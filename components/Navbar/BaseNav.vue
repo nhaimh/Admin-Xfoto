@@ -34,75 +34,75 @@
   </nav>
 </template>
 <script>
-import { CollapseTransition } from 'vue2-transitions';
+import { CollapseTransition } from "vue2-transitions";
 
 export default {
-  name: 'base-nav',
+  name: "base-nav",
   props: {
     show: {
       type: Boolean,
       default: false,
       description:
-        'Whether navbar menu is shown (valid for viewports < specified by `expand` prop)'
+        "Whether navbar menu is shown (valid for viewports < specified by `expand` prop)",
     },
     transparent: {
       type: Boolean,
       default: false,
-      description: 'Whether navbar is transparent'
+      description: "Whether navbar is transparent",
     },
     expand: {
       type: String,
-      default: 'lg',
-      description: 'Breakpoint where nav should expand'
+      default: "lg",
+      description: "Breakpoint where nav should expand",
     },
     menuClasses: {
       type: [String, Object, Array],
-      default: '',
+      default: "",
       description:
-        'Navbar menu (items) classes. Can be used to align menu items to the right/left'
+        "Navbar menu (items) classes. Can be used to align menu items to the right/left",
     },
     containerClasses: {
       type: [String, Object, Array],
-      default: 'container-fluid',
+      default: "container-fluid",
       description:
-        'Container classes. Can be used to control container classes (contains both navbar brand and menu items)'
+        "Container classes. Can be used to control container classes (contains both navbar brand and menu items)",
     },
     type: {
       type: String,
-      default: 'white',
+      default: "white",
       validator(value) {
         return [
-          'dark',
-          'success',
-          'danger',
-          'warning',
-          'white',
-          'primary',
-          'info',
-          'vue'
+          "dark",
+          "success",
+          "danger",
+          "warning",
+          "white",
+          "primary",
+          "info",
+          "vue",
         ].includes(value);
       },
-      description: 'Navbar color type'
-    }
+      description: "Navbar color type",
+    },
   },
   model: {
-    prop: 'show',
-    event: 'change'
+    prop: "show",
+    event: "change",
   },
   components: {
-    CollapseTransition
+    CollapseTransition,
   },
   data() {
     return {
-      transitionFinished: true
+      transitionFinished: true,
     };
   },
   computed: {
     classes() {
       let color = `bg-${this.type}`;
       let classes = [
-        { 'navbar-transparent': !this.show && this.transparent },
-        { [`navbar-expand-${this.expand}`]: this.expand }
+        { "navbar-transparent": !this.show && this.transparent },
+        { [`navbar-expand-${this.expand}`]: this.expand },
       ];
       if (this.position) {
         classes.push(`navbar-${this.position}`);
@@ -118,19 +118,19 @@ export default {
     },
     hasMenu() {
       return this.$slots.default;
-    }
+    },
   },
   methods: {
     toggleMenu() {
-      this.$emit('change', !this.show);
+      this.$emit("change", !this.show);
     },
     onTransitionStart() {
       this.transitionFinished = false;
     },
     onTransitionEnd() {
       this.transitionFinished = true;
-    }
-  }
+    },
+  },
 };
 </script>
 <style></style>

@@ -26,12 +26,7 @@
       <div class="copyright">
         &copy; {{ year }}, made with <i class="tim-icons icon-heart-2"></i> by
 
-        <a
-          href="https://www.creative-tim.com/?ref=pdf-vuejs"
-          target="_blank"
-          rel="noopener"
-          >luong Ngoc Hai</a
-        >
+        <a href="fb.com" target="_blank" rel="noopener">luong Ngoc Hai</a>
         for a better web.
       </div>
     </div>

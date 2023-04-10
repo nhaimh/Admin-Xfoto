@@ -8,9 +8,7 @@
 </template>
 
 <script>
-export default {
-  layout: 'auth'
-};
+export default {};
 </script>
 <style lang="scss">
 .not-found-page {

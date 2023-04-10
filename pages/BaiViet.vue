@@ -80,6 +80,7 @@ export default {
     detail,
     EditBV,
   },
+
   data() {
     return {
       params: {

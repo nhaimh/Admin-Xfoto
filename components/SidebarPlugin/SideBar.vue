@@ -5,9 +5,7 @@
         <a href="http://www.creative-tim.com" class="simple-text logo-mini">
           <img :src="logo" alt="app-logo" />
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Web Xfoto
-        </a>
+        <a href="/" class="simple-text logo-normal"> Web Xfoto </a>
       </div>
       <slot></slot>
       <ul class="nav">

@@ -43,29 +43,27 @@
 
         <sidebar-item
           :link="{
+            name: 'Sản Phẩm',
+            icon: 'tim-icons icon-puzzle-10',
+            path: '/SanPham',
+          }"
+        ></sidebar-item>
+
+        <sidebar-item
+          :link="{
+            name: 'Chi Tiết SP',
+            icon: 'tim-icons icon-align-center',
+            path: '/ChiTietSP',
+          }"
+        ></sidebar-item>
+        <sidebar-item
+          :link="{
             name: $t('sidebar.userProfile'),
             icon: 'tim-icons icon-single-02',
             path: '/user',
           }"
         >
         </sidebar-item>
-
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.regularTables'),
-            icon: 'tim-icons icon-puzzle-10',
-            path: '/regular',
-          }"
-        ></sidebar-item>
-
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.typography'),
-            icon: 'tim-icons icon-align-center',
-            path: '/typography',
-          }"
-        ></sidebar-item>
-
         <li class="active-pro">
           <a href="https://www.fb.com/nhaimh" target="_blank">
             <i class="tim-icons icon-spaceship"></i>
@@ -116,6 +114,7 @@ import DashboardContent from "@/components/Layout/Content.vue";
 import { SlideYDownTransition, ZoomCenterTransition } from "vue2-transitions";
 
 export default {
+  middleware: "auth1",
   components: {
     DashboardNavbar,
     ContentFooter,
@@ -160,7 +159,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 $scaleSize: 0.95;
 @keyframes zoomIn95 {
   from {

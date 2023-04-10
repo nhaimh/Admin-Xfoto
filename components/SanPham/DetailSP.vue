@@ -5,24 +5,26 @@
         <div class="modal-overlay"></div>
         <div class="modal-content">
           <section class="modal-body">
-            <h1 v-if="DAi.id == null">Add new SP Dự Án</h1>
-            <h1 v-else>Edit SP Dự Án</h1>
+            <h1 v-if="Anh.id == null">Add new Image SP</h1>
+            <h1 v-else>Edit Imgae SP</h1>
             <div class="form-edit">
               <a>#ID</a>
-              <b-input type="number" :disabled="true" v-model="DAi.id" />
+              <b-input type="number" :disabled="true" v-model="Anh.id" />
+              <a>Description</a>
+              <b-input type="text" v-model="Anh.description" />
               <a>Imgae Affter</a>
-              <b-input type="text" v-model="DAi.imageA" />
+              <b-input type="text" v-model="Anh.imageA" />
               <a>Image Before</a>
-              <b-input type="text" v-model="DAi.imageB" />
+              <b-input type="text" v-model="Anh.imageB" />
               <a>Tác giả</a>
-              <b-input type="number" v-model="DAi.duanId" />
+              <b-input type="number" v-model="Anh.sanPhamId" />
             </div>
           </section>
           <footer class="modal-footer">
             <b-button @click="$emit('close-modal')" variant="danger"
               >Close</b-button
             >
-            <b-button variant="outline-primary" @click="updateeI()"
+            <b-button variant="outline-primary" @click="updateeD()"
               >Update</b-button
             >
           </footer>
@@ -36,38 +38,41 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "NuxtBlackDashboardMasterEditDAimgae",
+  name: "NuxtBlackDashboardMasterDetailSP",
   props: ["id"],
+
   data() {
     return {
       showEdit: true,
     };
   },
   computed: {
-    ...mapGetters(["DAi"]),
+    ...mapGetters(["Anh"]),
   },
   mounted() {
-    this.getByIDI(this.id);
+    this.getSPById(this.id);
   },
 
   methods: {
-    ...mapActions(["getByIDI", "addI", "UpdateI"]),
-    updateeI() {
+    ...mapActions(["getSPById", "addD", "UpdateD"]),
+    updateeD() {
       if (this.id) {
-        this.UpdateI({
-          id: this.DAi.id,
-          imageA: this.DAi.imageA,
-          imageB: this.DAi.imageB,
-          duanId: this.DAi.duanId,
+        this.UpdateD({
+          id: this.Anh.id,
+          description: this.Anh.description,
+          imageA: this.Anh.imageA,
+          imageB: this.Anh.imageB,
+          sanPhamId: this.Anh.sanPhamId,
         });
         this.showEdit = false;
         this.$emit("close-modal", true);
         return;
       }
-      this.addI({
-        imageA: this.DAi.imageA,
-        imageB: this.DAi.imageB,
-        duanId: this.DAi.duanId,
+      this.addD({
+        description: this.Anh.description,
+        imageA: this.Anh.imageA,
+        imageB: this.Anh.imageB,
+        sanPhamId: this.Anh.sanPhamId,
       });
       this.showEdit = false;
       this.$emit("close-modal", true);

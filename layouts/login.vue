@@ -1,11 +1,13 @@
 <template>
-  <div></div>
+  <div>
+    <nuxt />
+  </div>
 </template>
 
 <script>
 export default {
-  name: "NuxtBlackDashboardMasterTypography",
-
+  name: "NuxtBlackDashboardMasterLogin",
+  middleware: "guest",
   data() {
     return {};
   },

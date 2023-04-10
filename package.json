@@ -11,17 +11,21 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/auth-next": "^5.0.0-1667386184.dfbbb54",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/bootstrap-vue": "^2.0.4",
     "@nuxtjs/pwa": "^3.3.5",
     "bootstrap": "4.3.1",
     "bootstrap-vue": "^2.23.1",
     "chart.js": "2.9.4",
+    "cookie-universal-nuxt": "^2.2.2",
     "d3": "7.7.0",
     "element-ui": "2.15.12",
     "es6-promise": "4.2.8",
     "fuse.js": "6.6.2",
     "google-maps": "3.2.1",
+    "js-cookie": "^3.0.1",
     "nuxt": "2.15.8",
     "nuxt-i18n": "^6.1.0",
     "perfect-scrollbar": "^1.5.5",
@@ -29,6 +33,7 @@
     "tween.js": "16.6.0",
     "vue-chartjs": "3.5.1",
     "vue-i18n": "8.0.0",
+    "vue-router": "^3.6.5",
     "vue2-transitions": "0.3.0"
   },
   "devDependencies": {
