@@ -1,8 +1,26 @@
 <template>
   <div>
-    <b-button size="sm" variant="outline-primary" @click="showEdit = true">
-      Thêm Mới Bài Viết</b-button
-    >
+    <b-row>
+      <b-col cols="8">
+        <b-button size="sm" variant="outline-primary" @click="showEdit = true">
+          Thêm Mới Bài Viết</b-button
+        >
+      </b-col>
+      <b-col cols="4" class="d-flex">
+        <b-input
+          type="text"
+          class="p-1 m-2"
+          v-model="params.keyWord"
+          style="width: 200px"
+        />
+        <b-button
+          class="icon bg-primary text-white rounded p-1 m-2"
+          @click="getBlog(params)"
+        >
+          Tìm kiếm
+        </b-button>
+      </b-col>
+    </b-row>
     <table class="table">
       <thead>
         <tr>
@@ -87,7 +105,7 @@ export default {
         pageSize: 8,
         pageIndex: 1,
         status: 0,
-        keyWord: "a",
+        keyWord: null,
       },
       showDetail: false,
       showEdit: false,

@@ -3,8 +3,7 @@
     <div class="col-md-12">
       <card class="card-plain" body-classes="table-full-width">
         <template slot="header">
-          <h4 class="card-title">Table on Plain Background</h4>
-          <p class="category">Here is a subtitle for this table</p>
+          <h4 class="card-title">Dự Án</h4>
         </template>
         <el-table
           header-cell-class-name="table-transparent"
@@ -17,18 +16,21 @@
             sortable
             label="#ID"
             property="id"
+            width="80"
           ></el-table-column>
           <el-table-column
             min-width="150"
             sortable
             label="Name"
             property="name"
+            width="120"
           ></el-table-column>
           <el-table-column
             min-width="150"
             sortable
             label="Description"
             property="description"
+            width="460"
           ></el-table-column>
           <el-table-column
             min-width="150"
@@ -74,7 +76,9 @@ export default {
   },
   mounted() {},
 
-  methods: { ...mapActions(["getDuans"]) },
+  methods: {
+    ...mapActions(["getDuans"]),
+  },
 };
 </script>
 
