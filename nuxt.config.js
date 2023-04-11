@@ -48,7 +48,7 @@ export default {
   },
   router: {
     linkExactActiveClass: "active",
-    // middleware: ['auth']
+    // middleware: ['auth1']
   },
   /*
    ** Customize the progress-bar color
@@ -63,36 +63,10 @@ export default {
     "assets/sass/black-dashboard.scss",
     "perfect-scrollbar/css/perfect-scrollbar.css"
   ],
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       token: {
-  //         property: "token"
-  //         // required: true,
-  //         // type: 'Bearer'
-  //       },
-  //       user: {
-  //         property: "user"
-  //         // autoFetch: true
-  //       },
-  //       endpoints: {
-  //         login: { url: "https://localhost:7077/api/Auth/login", method: "post" },
-  //         logout: { url: "/api/logout", method: "post" },
-  //         user: { url: "/api/me", method: "get" }
-  //       }
-  //     }
-  //   },
-  //   redirect: {
-  //     login: "/login",
-  //     logout: "/",
-  //     home: "/"
-  //   }
-  // },
-
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [`~/plugins/dashboard-plugin.js`],
+  plugins: [`~/plugins/dashboard-plugin.js`, `~/plugins/axios.js`],
   // Auto import components: https://go.nuxtjs.dev/config-components
   /*
    ** Nuxt.js dev-modules
@@ -139,7 +113,7 @@ export default {
     },
   },
   env: {
-    baseApiUrl: process.env.BASE_URL || 'http://192.168.1.86:7654/api/'
+    baseApiUrl: process.env.BASE_URL || 'http://192.168.1.107:7654/api/'
   },
 
 };

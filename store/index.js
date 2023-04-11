@@ -142,7 +142,7 @@ const createStore = () => {
             /// ****** Dự Án ******///
             async getDuans({ commit }) {
                 try {
-                    const response = await axios.get(process.env.baseApiUrl + `DuAn`)
+                    const response = await this.$axios.get(process.env.baseApiUrl + `DuAn`)
                     commit("GET_DUANS", response.data)
                 } catch (err) {
                     console.log(err)
@@ -150,7 +150,7 @@ const createStore = () => {
             },
             async getImage({ commit }, params) {
                 try {
-                    const response = await axios.post(process.env.baseApiUrl + `DuAn/getall`, params)
+                    const response = await this.$axios.post(process.env.baseApiUrl + `DuAn/getall`, params)
                     commit("GET_I", response.data)
                 } catch (error) {
                     console.log(error)
@@ -158,7 +158,7 @@ const createStore = () => {
             },
             async getByIDI({ commit }, id) {
                 try {
-                    const response = await axios.get(process.env.baseApiUrl + `DuAn/DuAnImage/id?id=${id}`)
+                    const response = await this.$axios.get(process.env.baseApiUrl + `DuAn/DuAnImage/id?id=${id}`)
                     commit("GET_DAI", response.data)
                 } catch (error) {
                     console.log(error)
@@ -166,7 +166,7 @@ const createStore = () => {
             },
             async deleteI({ commit }, id) {
                 try {
-                    await axios.delete(process.env.baseApiUrl + `DuAn/DuAnImage/id?id=${id}`);
+                    await this.$axios.delete(process.env.baseApiUrl + `DuAn/DuAnImage/id?id=${id}`);
                     commit("DELETE_I", id)
                 } catch (error) {
                     console.log(error)
@@ -174,7 +174,7 @@ const createStore = () => {
             },
             async addI({ commit }, duanimage) {
                 try {
-                    await axios.post(process.env.baseApiUrl + `DuAn/DuAnImage`, duanimage)
+                    await this.$axios.post(process.env.baseApiUrl + `DuAn/DuAnImage`, duanimage)
                     commit("ADDI", duanimage)
                 } catch (error) {
                     console.log(error)
@@ -182,7 +182,7 @@ const createStore = () => {
             },
             async UpdateI({ commit }, duanimage) {
                 try {
-                    await axios.put(process.env.baseApiUrl + `DuAn/DuAnImage`, duanimage)
+                    await this.$axios.put(process.env.baseApiUrl + `DuAn/DuAnImage`, duanimage)
                     commit("UPDATEI", duanimage)
                 } catch (error) {
                     console.log(error)
@@ -192,7 +192,7 @@ const createStore = () => {
             /// ****** Sản Phẩm ******///
             async getSanPham({ commit }) {
                 try {
-                    const response = await axios.get(process.env.baseApiUrl + `SanPham`)
+                    const response = await this.$axios.get(process.env.baseApiUrl + `SanPham`)
                     commit("GET_SP", response.data)
                 } catch (err) {
                     // eslint-disable-next-line no-console
@@ -201,7 +201,7 @@ const createStore = () => {
             },
             async getSPById({ commit }, id) {
                 try {
-                    const response = await axios.get(process.env.baseApiUrl + `SanPham/detail/id?id=${id}`)
+                    const response = await this.$axios.get(process.env.baseApiUrl + `SanPham/detail/id?id=${id}`)
                     commit("GET_GIDAY", response.data)
                 } catch (error) {
                     console.log(error)
@@ -209,7 +209,7 @@ const createStore = () => {
             },
             async getSPd({ commit }, param) {
                 try {
-                    const response = await axios.post(process.env.baseApiUrl + `SanPham/detail/getall`, param)
+                    const response = await this.$axios.post(process.env.baseApiUrl + `SanPham/detail/getall`, param)
                     commit("GET_SPD", response.data)
                 } catch (error) {
                     console.log(error)
@@ -217,7 +217,7 @@ const createStore = () => {
             },
             async deleteD({ commit }, id) {
                 try {
-                    await axios.delete(process.env.baseApiUrl + `SanPham/detail?id=${id}`);
+                    await this.$axios.delete(process.env.baseApiUrl + `SanPham/detail?id=${id}`);
                     commit("DELETE_D", id)
                 } catch (error) {
                     console.log(error)
@@ -225,7 +225,7 @@ const createStore = () => {
             },
             async addD({ commit }, sanphamdetail) {
                 try {
-                    await axios.post(process.env.baseApiUrl + `SanPham/detail`, sanphamdetail)
+                    await this.$axios.post(process.env.baseApiUrl + `SanPham/detail`, sanphamdetail)
                     commit("ADDD", sanphamdetail)
                 } catch (error) {
                     console.log(error)
@@ -233,7 +233,7 @@ const createStore = () => {
             },
             async UpdateD({ commit }, sanphamdetail) {
                 try {
-                    await axios.put(process.env.baseApiUrl + `SanPham/detail`, sanphamdetail)
+                    await this.$axios.put(process.env.baseApiUrl + `SanPham/detail`, sanphamdetail)
                     commit("UPD", sanphamdetail)
                 } catch (error) {
                     console.log(error)
@@ -243,7 +243,7 @@ const createStore = () => {
             //******** Blog **********/
             async getBlog({ commit }, params) {
                 try {
-                    const response = await axios.post(process.env.baseApiUrl + `Blog/getall`, params)
+                    const response = await this.$axios.post(process.env.baseApiUrl + `Blog/getall`, params)
                     commit("GET_BLOG", response.data)
 
                 } catch (err) {
@@ -252,7 +252,7 @@ const createStore = () => {
             },
             async getByIdBlog({ commit }, id) {
                 try {
-                    const response = await axios.get(process.env.baseApiUrl + `Blog/get/id?id=${id}`)
+                    const response = await this.$axios.get(process.env.baseApiUrl + `Blog/get/id?id=${id}`)
                     commit("GET_BYIDBLOG", response.data)
                 } catch (err) {
                     console.log(err)
@@ -260,7 +260,7 @@ const createStore = () => {
             },
             async deleteBlog({ commit }, id) {
                 try {
-                    await axios.delete(process.env.baseApiUrl + `Blog/id?id=${id}`);
+                    await this.$axios.delete(process.env.baseApiUrl + `Blog/id?id=${id}`);
                     commit("DELETE_BV", id)
                 } catch (error) {
                     console.log(error)
@@ -268,7 +268,7 @@ const createStore = () => {
             },
             async addBlog({ commit }, blog) {
                 try {
-                    await axios.post(process.env.baseApiUrl + `Blog`, blog)
+                    await this.$axios.post(process.env.baseApiUrl + `Blog`, blog)
                     commit("ADDBLOG", blog)
                 } catch (error) {
                     console.log(error)
@@ -276,7 +276,7 @@ const createStore = () => {
             },
             async UpdateBlog({ commit }, blog) {
                 try {
-                    await axios.put(process.env.baseApiUrl + `Blog`, blog)
+                    await this.$axios.put(process.env.baseApiUrl + `Blog`, blog)
                     commit("UPBLOG", blog)
                 } catch (error) {
                     console.log(error)

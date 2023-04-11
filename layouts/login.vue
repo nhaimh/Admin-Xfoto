@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "NuxtBlackDashboardMasterLogin",
-  middleware: "guest",
+  middleware: ["guest"],
   data() {
     return {};
   },

@@ -114,7 +114,7 @@ import DashboardContent from "@/components/Layout/Content.vue";
 import { SlideYDownTransition, ZoomCenterTransition } from "vue2-transitions";
 
 export default {
-  middleware: "auth1",
+  middleware: ["auth1"],
   components: {
     DashboardNavbar,
     ContentFooter,
