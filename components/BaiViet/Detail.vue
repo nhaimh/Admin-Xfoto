@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="fade show" tabindex="-1" role="dialog" v-if="showDetail">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog" role="document" style="z-index: 9999999">
         <div class="modal-overlay" @click="$emit('close-modal')"></div>
         <div class="modal-content">
           <header class="modal-header">

@@ -77,7 +77,7 @@ export default {
   data() {
     return {
       params: {
-        pageSize: 6,
+        pageSize: 3,
         pageIndex: 1,
         status: 0,
         keyWord: null,

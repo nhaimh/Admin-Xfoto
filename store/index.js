@@ -16,7 +16,7 @@ const createStore = () => {
             Blo: {},
             token: '',
             User: [],
-            isloading: false
+            user: {},
 
         },
         mutations: {
@@ -37,9 +37,7 @@ const createStore = () => {
             DELETE_I(state, id) {
                 state.DAimgae = state.DAimgae.filter((DAimgae) => DAimgae.id !== id)
             },
-            ADDI(state, duanimage) {
-                state.DAimgae.unshift(duanimage)
-            },
+
             UPDATEI(state, duanimage) {
                 state.DAimgae.push(duanimage)
             },
@@ -82,6 +80,9 @@ const createStore = () => {
             //User
             GET_U(state, User) {
                 state.User = User
+            },
+            USE(state, user) {
+                state.user = user
             }
 
         },
@@ -121,6 +122,9 @@ const createStore = () => {
 
             User(state) {
                 return state.User
+            },
+            user(state) {
+                return state.user
             }
 
         },
@@ -136,9 +140,9 @@ const createStore = () => {
                 this.$cookies.remove('token');
 
             },
-            async getU({ commit }) {
+            async getU({ commit }, params) {
                 try {
-                    const response = await this.$axios.get(process.env.baseApiUrl + `Auth`)
+                    const response = await this.$axios.post(process.env.baseApiUrl + `Auth`, params)
                     commit("GET_U", response.data)
                 } catch (error) {
                     console.log(error)
@@ -148,6 +152,21 @@ const createStore = () => {
                 try {
                     await this.$axios.post(process.env.baseApiUrl + `Auth/register`, User)
 
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            async deleteU({ commit }, id) {
+                try {
+                    await this.$axios.delete(process.env.baseApiUrl + `Auth/id?id=${id}`)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            async getByIDU({ commit }, id) {
+                try {
+                    const response = await this.$axios.get(process.env.baseApiUrl + `Auth?id=${id}`)
+                    commit("USE", response.data)
                 } catch (error) {
                     console.log(error)
                 }
@@ -191,7 +210,6 @@ const createStore = () => {
             async addI({ commit }, duanimage) {
                 try {
                     await this.$axios.post(process.env.baseApiUrl + `DuAn/DuAnImage`, duanimage)
-                    commit("ADDI", duanimage)
                 } catch (error) {
                     console.log(error)
                 }
