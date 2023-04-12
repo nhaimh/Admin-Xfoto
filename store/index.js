@@ -15,7 +15,7 @@ const createStore = () => {
             Blog: [],
             Blo: {},
             token: '',
-            user: {},
+            User: [],
             isloading: false
 
         },
@@ -57,12 +57,12 @@ const createStore = () => {
             DELETE_D(state, id) {
                 state.SanPhamDetail = state.SanPhamDetail.filter((SanPhamDetail) => SanPhamDetail.id !== id)
             },
-            ADDD(state, sanphamdetail) {
-                state.SanPhamDetail.unshift(sanphamdetail)
-            },
+
             UPD(state, sanphamdetail) {
                 state.SanPhamDetail.push(sanphamdetail)
             },
+
+
 
             //Blog
             GET_BLOG(state, Blog) {
@@ -74,23 +74,18 @@ const createStore = () => {
             DELETE_BV(state, id) {
                 state.Blog = state.Blog.filter((Blo) => Blo.id !== id)
             },
-            ADDBLOG(state, blog) {
-                state.Blog.unshift(blog)
-            },
+
             UPBLOG(state, blog) {
                 state.Blog.push(blog)
             },
 
+            //User
+            GET_U(state, User) {
+                state.User = User
+            }
+
         },
         getters: {
-            // isAuthenticated(state) {
-            //     if (localStorage.getItem('token')) {
-            //         return state.token = localStorage.getItem('token')
-            //     }
-            //     return state.token != null
-            // },
-
-
             Duans(state) {
                 return state.Duans
             },
@@ -121,6 +116,11 @@ const createStore = () => {
             },
             DAi(state) {
                 return state.DAi
+            },
+
+
+            User(state) {
+                return state.User
             }
 
         },
@@ -135,6 +135,22 @@ const createStore = () => {
                 this.token = '';
                 this.$cookies.remove('token');
 
+            },
+            async getU({ commit }) {
+                try {
+                    const response = await this.$axios.get(process.env.baseApiUrl + `Auth`)
+                    commit("GET_U", response.data)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            async addU({ commit }, User) {
+                try {
+                    await this.$axios.post(process.env.baseApiUrl + `Auth/register`, User)
+
+                } catch (error) {
+                    console.log(error)
+                }
             },
 
 
@@ -217,7 +233,7 @@ const createStore = () => {
             },
             async deleteD({ commit }, id) {
                 try {
-                    await this.$axios.delete(process.env.baseApiUrl + `SanPham/detail?id=${id}`);
+                    await this.$axios.delete(process.env.baseApiUrl + `SanPham/detail/id?id=${id}`);
                     commit("DELETE_D", id)
                 } catch (error) {
                     console.log(error)
@@ -226,7 +242,7 @@ const createStore = () => {
             async addD({ commit }, sanphamdetail) {
                 try {
                     await this.$axios.post(process.env.baseApiUrl + `SanPham/detail`, sanphamdetail)
-                    commit("ADDD", sanphamdetail)
+
                 } catch (error) {
                     console.log(error)
                 }
@@ -269,7 +285,6 @@ const createStore = () => {
             async addBlog({ commit }, blog) {
                 try {
                     await this.$axios.post(process.env.baseApiUrl + `Blog`, blog)
-                    commit("ADDBLOG", blog)
                 } catch (error) {
                     console.log(error)
                 }

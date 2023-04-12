@@ -58,7 +58,7 @@
         ></sidebar-item>
         <sidebar-item
           :link="{
-            name: $t('sidebar.userProfile'),
+            name: 'List User',
             icon: 'tim-icons icon-single-02',
             path: '/user',
           }"
