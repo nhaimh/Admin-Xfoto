@@ -17,6 +17,8 @@
               <b-input v-model="user.email"></b-input>
               <a>Address</a>
               <b-input v-model="user.address"></b-input>
+              <a>Role</a>
+              <b-input v-model="user.role"></b-input>
               <a>TokenCreated</a>
               <b-input v-model="user.tokenCreated"></b-input>
               <a>TokenExpires</a>
@@ -24,9 +26,10 @@
             </div>
           </section>
           <footer class="modal-footer">
-            <b-button @click="$emit('close-modal')" variant="danger"
+            <b-button @click="$emit('close-detail')" variant="danger"
               >Close</b-button
             >
+            <b-button @click="updateUu()"> Update </b-button>
           </footer>
         </div>
       </div>
@@ -49,7 +52,19 @@ export default {
   },
   mounted() {},
   methods: {
-    ...mapActions(["getByIDU"]),
+    ...mapActions(["getByIDU", "updateU"]),
+    updateUu() {
+      this.updateU({
+        id: this.user.id,
+        username: this.user.username,
+        fullname: this.user.fullname,
+        email: this.user.email,
+        role: this.user.role,
+        address: this.user.address,
+      });
+      this.showDetail = false;
+      this.$emit("close-detail", true);
+    },
   },
 };
 </script>

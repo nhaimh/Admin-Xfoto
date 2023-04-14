@@ -41,7 +41,7 @@
                 >Detail</b-button
               >
 
-              <b-button size="sm" variant="danger" @click="deleteU(a.id)"
+              <b-button size="sm" variant="danger" @click="deleteUm(a.id)"
                 >Delete</b-button
               >
             </b-button-group>
@@ -55,11 +55,11 @@
         aria-controls=""
       ></b-pagination>
     </table>
-    <AddUser v-if="showEdit" v-show="showEdit" @close-modal="closeEdit" />
+    <AddUser v-if="showEdit" v-show="showEdit" @close-modal="closeEdit()" />
     <DetailUser
       v-if="showDetail"
       v-show="showDetail"
-      @close-modal="showDetail = false"
+      @close-detail="closeDetail()"
     />
   </div>
 </template>
@@ -75,7 +75,7 @@ export default {
       showEdit: false,
       showDetail: false,
       params: {
-        pageSize: 3,
+        pageSize: 6,
         pageIndex: 1,
         status: 0,
         keyWord: null,
@@ -89,23 +89,29 @@ export default {
   computed: {
     ...mapGetters(["User"]),
   },
-  created() {
-    this.getU(this.params);
-  },
+
   watch: {
     "params.pageIndex"() {
-      (this.params.pageIndex = this.params.pageIndex
-        ? this.params.pageIndex
-        : 1),
-        this.getU(this.params);
+      this.params.pageIndex = this.params.pageIndex ? this.params.pageIndex : 1;
+      this.getU(this.params);
     },
+  },
+  created() {
+    this.getU(this.params);
   },
   methods: {
     ...mapActions(["getU", "deleteU", "getByIDU"]),
     closeEdit(reload) {
       this.showEdit = false;
       this.getU(this.params);
-      this.params.pageIndex = 1;
+    },
+    closeDetail(reload) {
+      this.showDetail = false;
+      this.getU(this.params);
+    },
+    deleteUm(id) {
+      this.deleteU(id);
+      this.getU(this.params);
     },
   },
 };

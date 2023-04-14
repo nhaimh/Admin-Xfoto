@@ -156,6 +156,13 @@ const createStore = () => {
                     console.log(error)
                 }
             },
+            async updateU({ commit }, user) {
+                try {
+                    await this.$axios.put(process.env.baseApiUrl + `Auth`, user)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
             async deleteU({ commit }, id) {
                 try {
                     await this.$axios.delete(process.env.baseApiUrl + `Auth/id?id=${id}`)
@@ -217,7 +224,6 @@ const createStore = () => {
             async UpdateI({ commit }, duanimage) {
                 try {
                     await this.$axios.put(process.env.baseApiUrl + `DuAn/DuAnImage`, duanimage)
-                    commit("UPDATEI", duanimage)
                 } catch (error) {
                     console.log(error)
                 }

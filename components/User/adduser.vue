@@ -17,8 +17,8 @@
             <b-button @click="$emit('close-modal')" variant="danger"
               >Close</b-button
             >
-            <b-button variant="outline-primary" @click="updateeI()"
-              >Update</b-button
+            <b-button variant="outline-primary" @click="addUser()"
+              >Add user</b-button
             >
           </footer>
         </div>
@@ -42,7 +42,7 @@ export default {
 
   methods: {
     ...mapActions(["addU"]),
-    updateeI() {
+    addUser() {
       this.addU({
         userName: this.User.UserName,
         password: this.User.password,
