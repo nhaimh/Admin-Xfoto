@@ -9,20 +9,20 @@
             <div class="form-edit">
               <a>#ID</a>
               <b-input v-model="user.id"></b-input>
-              <a>Username</a>
-              <b-input v-model="user.username"></b-input>
               <a>Fullname</a>
-              <b-input v-model="user.fullname"></b-input>
+              <b-input v-model="user.fullName"></b-input>
+              <a>UserName</a>
+              <b-input v-model="user.userName"></b-input>
               <a>Email</a>
               <b-input v-model="user.email"></b-input>
-              <a>Address</a>
-              <b-input v-model="user.address"></b-input>
-              <a>Role</a>
-              <b-input v-model="user.role"></b-input>
-              <a>TokenCreated</a>
-              <b-input v-model="user.tokenCreated"></b-input>
-              <a>TokenExpires</a>
-              <b-input v-model="user.tokenExpires"></b-input>
+              <a>emailConfirmed</a>
+              <b-input v-model="user.emailConfirmed"></b-input>
+              <a>PhoneNumber</a>
+              <b-input v-model="user.phoneNumber"></b-input>
+              <a>refreshTokenExpiryTime</a>
+              <b-input v-model="user.refreshTokenExpiryTime"></b-input>
+              <a>refreshToken</a>
+              <b-input v-model="user.refreshToken"></b-input>
             </div>
           </section>
           <footer class="modal-footer">
@@ -56,11 +56,10 @@ export default {
     updateUu() {
       this.updateU({
         id: this.user.id,
-        username: this.user.username,
-        fullname: this.user.fullname,
+        userName: this.user.email,
+        fullName: this.user.fullName,
         email: this.user.email,
-        role: this.user.role,
-        address: this.user.address,
+        phoneNumber: this.user.phoneNumber,
       });
       this.showDetail = false;
       this.$emit("close-detail", true);

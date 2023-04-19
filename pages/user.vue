@@ -24,16 +24,16 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#ID</th>
-          <th scope="col">UserName</th>
+          <th scope="col" style="width: 400px">#ID</th>
+          <th scope="col">FullName</th>
           <th scope="col">Role</th>
           <th scope="col">Chức Năng</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="a in User.data" :key="a.index">
+        <tr v-for="a in User" :key="a.index">
           <td scope="col">{{ a.id }}</td>
-          <td scope="col">{{ a.username }}</td>
+          <td scope="col">{{ a.fullName }}</td>
           <td scope="col">{{ a.role }}</td>
           <td>
             <b-button-group>

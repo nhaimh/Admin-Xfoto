@@ -13,12 +13,12 @@
       <div>
         <div class="row">
           <div class="">
-            <h4>Username</h4>
+            <h4>email</h4>
             <b-input
-              type="text"
+              type="email"
               label="Username"
               placeholder="Username"
-              v-model="username"
+              v-model="email"
             >
             </b-input>
           </div>
@@ -61,7 +61,7 @@ export default {
   middleware: ["guest"],
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
     };
   },
@@ -70,11 +70,11 @@ export default {
     ...mapMutations(["SET_TOKEN"]),
     ...mapActions(["userLogin"]),
     submitForm() {
-      if (!this.username || !this.password) {
+      if (!this.email || !this.password) {
         alert("Please fill all the field");
       } else {
         const datas = {
-          userName: this.username,
+          email: this.email,
           password: this.password,
         };
         this.userLogin(datas).then(() => {

@@ -63,7 +63,7 @@
         <template slot="title">
           <div class="photo">
             <img
-              src="https://scontent.fhan15-2.fna.fbcdn.net/v/t39.30808-6/333020753_937759914058189_5926792358061302923_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=lbaHGKmiWoMAX_80b5s&_nc_ht=scontent.fhan15-2.fna&oh=00_AfBKfZmD9ZpHKT60pqqgWdwRdsntzMQ6JuqAI3nFdCdrnA&oe=643B6E86"
+              src="https://cdn.britannica.com/99/236599-050-1199AD2C/Mark-Zuckerberg-2019.jpg"
             />
           </div>
           <b class="caret d-none d-lg-block d-xl-block"></b>

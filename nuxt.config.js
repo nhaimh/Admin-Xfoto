@@ -113,7 +113,7 @@ export default {
     },
   },
   env: {
-    baseApiUrl: process.env.BASE_URL || 'http://192.168.1.107:7654/api/'
+    baseApiUrl: process.env.BASE_URL || 'http://192.168.1.114/api/'
   },
 
 };

@@ -130,9 +130,9 @@ const createStore = () => {
         },
         actions: {
             async userLogin({ commit }, cccc) {
-                const res = await axios.post(process.env.baseApiUrl + `Auth/login`, cccc)
+                const res = await axios.post(process.env.baseApiUrl + `Authenticate/login`, cccc)
                 const output = res;
-                this.$cookies.set('token', output.data);
+                this.$cookies.set('token', output.data.token);
                 this.token = output.data;
             },
             userLogout() {
@@ -140,9 +140,9 @@ const createStore = () => {
                 this.$cookies.remove('token');
 
             },
-            async getU({ commit }, params) {
+            async getU({ commit }, param) {
                 try {
-                    const response = await this.$axios.post(process.env.baseApiUrl + `Auth`, params)
+                    const response = await this.$axios.post(process.env.baseApiUrl + `Authenticate`, param)
                     commit("GET_U", response.data)
                 } catch (error) {
                     console.log(error)
@@ -150,7 +150,7 @@ const createStore = () => {
             },
             async addU({ commit }, User) {
                 try {
-                    await this.$axios.post(process.env.baseApiUrl + `Auth/register`, User)
+                    await this.$axios.post(process.env.baseApiUrl + `Authenticate/SignUp`, User)
 
                 } catch (error) {
                     console.log(error)
@@ -158,21 +158,21 @@ const createStore = () => {
             },
             async updateU({ commit }, user) {
                 try {
-                    await this.$axios.put(process.env.baseApiUrl + `Auth`, user)
+                    await this.$axios.put(process.env.baseApiUrl + `Authenticate`, user)
                 } catch (error) {
                     console.log(error)
                 }
             },
             async deleteU({ commit }, id) {
                 try {
-                    await this.$axios.delete(process.env.baseApiUrl + `Auth/id?id=${id}`)
+                    await this.$axios.delete(process.env.baseApiUrl + `Authenticate/${id}`)
                 } catch (error) {
                     console.log(error)
                 }
             },
             async getByIDU({ commit }, id) {
                 try {
-                    const response = await this.$axios.get(process.env.baseApiUrl + `Auth?id=${id}`)
+                    const response = await this.$axios.get(process.env.baseApiUrl + `Authenticate/${id}`)
                     commit("USE", response.data)
                 } catch (error) {
                     console.log(error)
