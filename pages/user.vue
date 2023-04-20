@@ -15,9 +15,22 @@
         />
         <b-button
           class="icon bg-primary text-white rounded p-1 m-2"
+          style="width: 40px"
           @click="getU(params)"
         >
-          Tìm kiếm
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              style="padding: 3px"
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
         </b-button>
       </b-col>
     </b-row>
@@ -35,7 +48,15 @@
           <td scope="col">{{ a.id }}</td>
           <td scope="col">{{ a.fullName }}</td>
           <td scope="col">
-            <div v-for="r in a.roles" :key="r.index">{{ r }}</div>
+            <b-button
+              size="sm"
+              variant="info"
+              v-for="r in a.roles"
+              :key="r.index"
+              style=""
+              @click="(showRole = true), getByIDU(a.id)"
+              >{{ r }}</b-button
+            >
           </td>
           <td>
             <b-button-group>
@@ -63,6 +84,11 @@
       v-show="showDetail"
       @close-detail="closeDetail()"
     />
+    <Roleuser
+      v-if="showRole"
+      v-show="showRole"
+      @close-role="showRole = false"
+    />
   </div>
 </template>
 <script>
@@ -70,12 +96,14 @@ import { mapActions, mapGetters } from "vuex";
 
 import AddUser from "../components/User/adduser.vue";
 import DetailUser from "../components/User/detailuser.vue";
+import Roleuser from "../components/User/Roleuser.vue";
 export default {
   name: "user",
   data() {
     return {
       showEdit: false,
       showDetail: false,
+      showRole: false,
       params: {
         pageSize: 6,
         pageIndex: 1,
@@ -87,17 +115,12 @@ export default {
   components: {
     AddUser,
     DetailUser,
+    Roleuser,
   },
   computed: {
     ...mapGetters(["User"]),
   },
 
-  watch: {
-    "params.pageIndex"() {
-      this.params.pageIndex = this.params.pageIndex ? this.params.pageIndex : 1;
-      this.getU(this.params);
-    },
-  },
   created() {
     this.getU(this.params);
   },

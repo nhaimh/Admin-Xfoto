@@ -15,9 +15,11 @@ const createStore = () => {
             Blog: [],
             Blo: {},
             token: '',
+
             User: [],
             user: {},
 
+            Roles: [],
         },
         mutations: {
 
@@ -83,10 +85,20 @@ const createStore = () => {
             },
             USE(state, user) {
                 state.user = user
+            },
+
+            //Roles
+            GET_R(state, Roles) {
+                state.Roles = Roles
             }
 
         },
         getters: {
+            Roles(state) {
+                return state.Roles
+            },
+
+
             Duans(state) {
                 return state.Duans
             },
@@ -129,6 +141,16 @@ const createStore = () => {
 
         },
         actions: {
+
+            async getRole({ commit }) {
+                try {
+                    const res = await axios.get(process.env.baseApiUrl + `Authenticate/Role`)
+                    commit("GET_R", res.data)
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+
             async userLogin({ commit }, cccc) {
                 const res = await axios.post(process.env.baseApiUrl + `Authenticate/login`, cccc)
                 const output = res;

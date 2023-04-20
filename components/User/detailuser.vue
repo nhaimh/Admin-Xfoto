@@ -19,10 +19,8 @@
               <b-input v-model="user.emailConfirmed"></b-input>
               <a>PhoneNumber</a>
               <b-input v-model="user.phoneNumber"></b-input>
-              <a>refreshTokenExpiryTime</a>
-              <b-input v-model="user.refreshTokenExpiryTime"></b-input>
-              <a>refreshToken</a>
-              <b-input v-model="user.refreshToken"></b-input>
+              <a>PhoneNumberConfirmed</a>
+              <b-input v-model="user.phoneNumberConfirmed"></b-input>
             </div>
           </section>
           <footer class="modal-footer">
@@ -45,6 +43,7 @@ export default {
   data() {
     return {
       showDetail: true,
+      slectedItems: [],
     };
   },
   computed: {
@@ -60,6 +59,9 @@ export default {
         fullName: this.user.fullName,
         email: this.user.email,
         phoneNumber: this.user.phoneNumber,
+        emailConfirmed: this.user.emailConfirmed,
+        phoneNumberConfirmed: this.user.phoneNumberConfirmed,
+        roles: this.user.roles,
       });
       this.showDetail = false;
       this.$emit("close-detail", true);

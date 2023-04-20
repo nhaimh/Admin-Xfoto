@@ -58,6 +58,13 @@
         ></sidebar-item>
         <sidebar-item
           :link="{
+            name: 'List Roles',
+            icon: 'tim-icons icon-single-02',
+            path: '/Roles',
+          }"
+        ></sidebar-item>
+        <sidebar-item
+          :link="{
             name: 'List User',
             icon: 'tim-icons icon-single-02',
             path: '/user',
