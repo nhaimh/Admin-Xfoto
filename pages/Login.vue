@@ -78,6 +78,7 @@ export default {
           password: this.password,
         };
         this.userLogin(datas).then(() => {
+          alert("Dang nhap thanh cong");
           this.$router.push("/");
         });
       }

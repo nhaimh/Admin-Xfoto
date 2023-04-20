@@ -25,7 +25,7 @@
       <thead>
         <tr>
           <th scope="col" style="width: 400px">#ID</th>
-          <th scope="col">FullName</th>
+          <th scope="col" style="width: 200px">FullName</th>
           <th scope="col">Role</th>
           <th scope="col">Chức Năng</th>
         </tr>
@@ -34,7 +34,9 @@
         <tr v-for="a in User" :key="a.index">
           <td scope="col">{{ a.id }}</td>
           <td scope="col">{{ a.fullName }}</td>
-          <td scope="col">{{ a.role }}</td>
+          <td scope="col">
+            <div v-for="r in a.roles" :key="r.index">{{ r }}</div>
+          </td>
           <td>
             <b-button-group>
               <b-button size="sm" @click="(showDetail = true), getByIDU(a.id)"

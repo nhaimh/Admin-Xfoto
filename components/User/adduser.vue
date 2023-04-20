@@ -7,10 +7,10 @@
           <section class="modal-body">
             <h1>Add new user</h1>
             <div class="form-edit">
-              <a>Username</a>
-              <b-input type="text" v-model="User.UserName" />
+              <a>Email</a>
+              <b-input type="email" v-model="User.email" />
               <a>Password</a>
-              <b-input type="text" v-model="User.password" />
+              <b-input type="password" v-model="User.password" />
             </div>
           </section>
           <footer class="modal-footer">
@@ -44,7 +44,8 @@ export default {
     ...mapActions(["addU"]),
     addUser() {
       this.addU({
-        userName: this.User.UserName,
+        fullNameL: "",
+        email: this.User.email,
         password: this.User.password,
       });
       this.showEdit = false;
