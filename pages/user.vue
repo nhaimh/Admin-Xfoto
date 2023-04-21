@@ -54,7 +54,7 @@
               v-for="r in a.roles"
               :key="r.index"
               style=""
-              @click="(showRole = true), getByIDU(a.id)"
+              @click="(showRole = true), (idUer = a.id)"
               >{{ r }}</b-button
             >
           </td>
@@ -84,11 +84,12 @@
       v-show="showDetail"
       @close-detail="closeDetail()"
     />
-    <Roleuser
+    <!-- <Roleuser
       v-if="showRole"
       v-show="showRole"
+      :id="idUer"
       @close-role="showRole = false"
-    />
+    /> -->
   </div>
 </template>
 <script>
@@ -110,6 +111,7 @@ export default {
         status: 0,
         keyWord: null,
       },
+      idUer: "",
     };
   },
   components: {

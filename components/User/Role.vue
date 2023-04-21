@@ -4,7 +4,7 @@
       <div class="modal-dialog" role="document" style="z-index: 9999999">
         <div class="modal-overlay"></div>
         <div class="modal-content">
-          <section class="modal-body" style="">
+          <section class="modal-body" style="width: 300px">
             <h2>Quyền đã chọn</h2>
             <div class="d-flex">
               <div
@@ -20,7 +20,7 @@
             <h2>Danh sach Role</h2>
             <div class="d-flex">
               <div
-                v-for="(rol, index) in roless.filter((o) => !o.selected)"
+                v-for="(rol, index) in roless"
                 :key="index"
                 v-on:click="addToCart(index)"
               >
@@ -40,8 +40,8 @@
     </div>
   </div>
 </template>
-
-<script>
+  
+  <script>
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -51,29 +51,26 @@ export default {
       default: "",
     },
   },
-  name: "AdminXfotoRoleuser",
+  name: "Testauth",
 
   data() {
     return {
       showRole: true,
       slectedItems: [],
-      roless: [
-        { name: "Admin", selected: false },
-        { name: "Editor", selected: false },
-        { name: "User", selected: false },
-      ],
+      roless: [],
       cart: [],
     };
   },
   computed: {
-    // ...mapGetters(["user"]),
+    ...mapGetters(["Roles"]),
   },
   created() {
     this.getDate();
+    this.getRole();
   },
   mounted() {},
   methods: {
-    ...mapActions(["getByIDU", "updateU"]),
+    // ...mapActions(["getByIDU", "updateU"]),
     updateUu() {
       // this.updateU({
       //   roles: this.slectedItems,
@@ -93,8 +90,14 @@ export default {
 
       this.cart.splice(index, 1);
     },
+    ...mapActions(["getRole"]),
     getDate() {
-      console.log(this.id);
+      const ROOLe = this.Roles;
+      const rolessObjectArray = ROOLe.map((role) => ({
+        ...role,
+        selected: false,
+      }));
+      this.roless = rolessObjectArray;
       this.$axios
         .get(process.env.baseApiUrl + `Authenticate/${this.id}`)
         .then((res) => {
@@ -108,7 +111,6 @@ export default {
             const name = this.cart[i].name;
             const selected = this.cart[i].selected;
             const roleIndex = this.roless.findIndex((r) => r.name === name);
-            console.log(roleIndex);
             if (selected) {
               if (roleIndex !== -1) {
                 this.roless[roleIndex].selected = true;
@@ -125,6 +127,6 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
+  
+  <style lang="scss" scoped>
 </style>

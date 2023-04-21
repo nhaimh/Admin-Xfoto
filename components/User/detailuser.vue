@@ -5,7 +5,7 @@
         <div class="modal-overlay"></div>
         <div class="modal-content">
           <section class="modal-body">
-            <h1>Add new user</h1>
+            <h1>Detail User</h1>
             <div class="form-edit">
               <a>#ID</a>
               <b-input v-model="user.id"></b-input>
@@ -21,6 +21,10 @@
               <b-input v-model="user.phoneNumber"></b-input>
               <a>PhoneNumberConfirmed</a>
               <b-input v-model="user.phoneNumberConfirmed"></b-input>
+              <a>Roles</a>
+              <b-button
+                @click="(showRole = true), (slectedItems = user.id)"
+              ></b-button>
             </div>
           </section>
           <footer class="modal-footer">
@@ -32,18 +36,29 @@
         </div>
       </div>
     </div>
+    <Role
+      v-if="showRole"
+      v-show="showRole"
+      :id="slectedItems"
+      @close-role="showRole = false"
+    />
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import Role from "./Role.vue";
 
 export default {
   name: "NuxtBlackDashboardMasterDetailuser",
+  components: {
+    Role,
+  },
   data() {
     return {
+      showRole: false,
       showDetail: true,
-      slectedItems: [],
+      slectedItems: "",
     };
   },
   computed: {
