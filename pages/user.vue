@@ -39,15 +39,15 @@
         <tr>
           <th scope="col" style="width: 400px">#ID</th>
           <th scope="col" style="width: 200px">FullName</th>
-          <th scope="col">Role</th>
-          <th scope="col">Chức Năng</th>
+          <!-- <th scope="col">Role</th> -->
+          <th scope="col" style="padding-left: 500px !important">Chức Năng</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="a in User" :key="a.index">
           <td scope="col">{{ a.id }}</td>
           <td scope="col">{{ a.fullName }}</td>
-          <td scope="col">
+          <!-- <td scope="col">
             <b-button
               size="sm"
               variant="info"
@@ -57,8 +57,8 @@
               @click="(showRole = true), (idUer = a.id)"
               >{{ r }}</b-button
             >
-          </td>
-          <td>
+          </td> -->
+          <td style="padding-left: 500px !important">
             <b-button-group>
               <b-button size="sm" @click="(showDetail = true), getByIDU(a.id)"
                 >Detail</b-button
@@ -84,12 +84,6 @@
       v-show="showDetail"
       @close-detail="closeDetail()"
     />
-    <!-- <Roleuser
-      v-if="showRole"
-      v-show="showRole"
-      :id="idUer"
-      @close-role="showRole = false"
-    /> -->
   </div>
 </template>
 <script>
@@ -97,7 +91,6 @@ import { mapActions, mapGetters } from "vuex";
 
 import AddUser from "../components/User/adduser.vue";
 import DetailUser from "../components/User/detailuser.vue";
-import Roleuser from "../components/User/Roleuser.vue";
 export default {
   name: "user",
   data() {
@@ -117,7 +110,6 @@ export default {
   components: {
     AddUser,
     DetailUser,
-    Roleuser,
   },
   computed: {
     ...mapGetters(["User"]),
@@ -143,4 +135,5 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+</style>

@@ -9,6 +9,7 @@
             <th scope="col" style="width: 200px">Name</th>
             <th scope="col">normalizedName</th>
             <th scope="col">concurrencyStamp</th>
+            <th scope="col">Permission</th>
           </tr>
         </thead>
         <tbody>
@@ -18,31 +19,36 @@
             <td scope="col">{{ a.normalizedName }}</td>
             <td scope="col">{{ a.concurrencyStamp }}</td>
             <td>
-              <!-- <b-button-group>
-                    <b-button size="sm" @click="(showDetail = true), getByIDU(a.id)"
-                      >Detail</b-button
-                    >
-      
-                    <b-button size="sm" variant="danger" @click="deleteUm(a.id)"
-                      >Delete</b-button
-                    >
-                  </b-button-group> -->
+              <b-button size="sm" @click="(showPer = true), (perRole = a.name)">
+                Detail
+              </b-button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    <Permission
+      v-if="showPer"
+      v-show="showPer"
+      @close-per="closePer()"
+      :perRole="perRole"
+    />
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-
+import Permission from "../components/User/Permission.vue";
 export default {
   name: "AdminXfotoRoles",
 
   data() {
-    return {};
+    return {
+      showPer: false,
+    };
+  },
+  components: {
+    Permission,
   },
   computed: {
     ...mapGetters(["Roles"]),
@@ -54,6 +60,9 @@ export default {
 
   methods: {
     ...mapActions(["getRole"]),
+    closePer() {
+      this.showPer = false;
+    },
   },
 };
 </script>

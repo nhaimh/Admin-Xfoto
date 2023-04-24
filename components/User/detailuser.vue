@@ -12,19 +12,33 @@
               <a>Fullname</a>
               <b-input v-model="user.fullName"></b-input>
               <a>UserName</a>
-              <b-input v-model="user.userName"></b-input>
+              <b-input v-model="user.userName" type="email"></b-input>
               <a>Email</a>
-              <b-input v-model="user.email"></b-input>
+              <b-input v-model="user.email" type="email"></b-input>
               <a>emailConfirmed</a>
-              <b-input v-model="user.emailConfirmed"></b-input>
+              <b-input v-model="user.emailConfirmed" type="boolean"></b-input>
               <a>PhoneNumber</a>
               <b-input v-model="user.phoneNumber"></b-input>
               <a>PhoneNumberConfirmed</a>
-              <b-input v-model="user.phoneNumberConfirmed"></b-input>
-              <a>Roles</a>
-              <b-button
-                @click="(showRole = true), (slectedItems = user.id)"
-              ></b-button>
+              <b-input
+                v-model="user.phoneNumberConfirmed"
+                type="boolean"
+              ></b-input>
+              <label for="role-select">Select Authorization Role</label>
+              <b-form-select
+                size="sm"
+                id="role-select"
+                v-model="user.roles"
+                multiple
+              >
+                <option
+                  v-for="role in Roles"
+                  :key="role.index"
+                  :value="role.name"
+                >
+                  {{ role.name }}
+                </option>
+              </b-form-select>
             </div>
           </section>
           <footer class="modal-footer">
@@ -36,37 +50,31 @@
         </div>
       </div>
     </div>
-    <Role
-      v-if="showRole"
-      v-show="showRole"
-      :id="slectedItems"
-      @close-role="showRole = false"
-    />
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Role from "./Role.vue";
 
 export default {
   name: "NuxtBlackDashboardMasterDetailuser",
-  components: {
-    Role,
-  },
+
   data() {
     return {
       showRole: false,
       showDetail: true,
-      slectedItems: "",
+      slectedItems: "user",
     };
   },
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters(["user", "Roles"]),
+  },
+  created() {
+    this.getRole();
   },
   mounted() {},
   methods: {
-    ...mapActions(["getByIDU", "updateU"]),
+    ...mapActions(["getByIDU", "updateU", "getRole"]),
     updateUu() {
       this.updateU({
         id: this.user.id,
