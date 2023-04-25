@@ -89,12 +89,10 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import detail from "../components/BaiViet/Detail.vue";
 import EditBV from "../components/BaiViet/EditBaiViet.vue";
 export default {
   name: "NuxtBlackDashboardMasterIcons",
   components: {
-    detail,
     EditBV,
   },
 

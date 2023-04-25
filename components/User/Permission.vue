@@ -20,7 +20,7 @@
                 >
                   <option
                     v-for="permission in permissionss"
-                    :key="permission.indexOf"
+                    :key="permission"
                     :value="permission"
                   >
                     {{ permission }}
