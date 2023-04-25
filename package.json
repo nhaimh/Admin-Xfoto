@@ -26,6 +26,7 @@
     "fuse.js": "6.6.2",
     "google-maps": "3.2.1",
     "js-cookie": "^3.0.1",
+    "jwt-decode": "^3.1.2",
     "nuxt": "2.15.8",
     "nuxt-i18n": "^6.1.0",
     "perfect-scrollbar": "^1.5.5",
@@ -34,7 +35,8 @@
     "vue-chartjs": "3.5.1",
     "vue-i18n": "8.0.0",
     "vue-router": "^3.6.5",
-    "vue2-transitions": "0.3.0"
+    "vue2-transitions": "0.3.0",
+    "vuex-jwt": "^1.0.4"
   },
   "devDependencies": {
     "babel-plugin-component": "^1.1.1",

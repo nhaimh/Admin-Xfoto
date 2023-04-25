@@ -2,7 +2,12 @@
   <div>
     <b-row>
       <b-col cols="8">
-        <b-button size="sm" variant="outline-primary" @click="showEdit = true">
+        <b-button
+          size="sm"
+          variant="outline-primary"
+          @click="showEdit = true"
+          v-if="$hasPermission('create')"
+        >
           Thêm Mới User</b-button
         >
       </b-col>
@@ -47,24 +52,21 @@
         <tr v-for="a in User" :key="a.index">
           <td scope="col">{{ a.id }}</td>
           <td scope="col">{{ a.fullName }}</td>
-          <!-- <td scope="col">
-            <b-button
-              size="sm"
-              variant="info"
-              v-for="r in a.roles"
-              :key="r.index"
-              style=""
-              @click="(showRole = true), (idUer = a.id)"
-              >{{ r }}</b-button
-            >
-          </td> -->
+
           <td style="padding-left: 500px !important">
             <b-button-group>
-              <b-button size="sm" @click="(showDetail = true), getByIDU(a.id)"
+              <b-button
+                size="sm"
+                @click="(showDetail = true), getByIDU(a.id)"
+                v-if="$hasPermission('create')"
                 >Detail</b-button
               >
 
-              <b-button size="sm" variant="danger" @click="deleteUm(a.id)"
+              <b-button
+                size="sm"
+                variant="danger"
+                v-if="$hasPermission('delete')"
+                @click="deleteUm(a.id)"
                 >Delete</b-button
               >
             </b-button-group>
@@ -114,7 +116,11 @@ export default {
   computed: {
     ...mapGetters(["User"]),
   },
-
+  mounted() {
+    if (!this.$hasPermission("create")) {
+      this.$router.push("/GeneralViews/Error");
+    }
+  },
   created() {
     this.getU(this.params);
   },

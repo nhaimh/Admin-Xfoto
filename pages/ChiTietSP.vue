@@ -2,7 +2,12 @@
   <div>
     <b-row>
       <b-col cols="8">
-        <b-button size="sm" variant="outline-primary" @click="showEdit = true">
+        <b-button
+          size="sm"
+          variant="outline-primary"
+          @click="showEdit = true"
+          v-if="$hasPermission('create')"
+        >
           Thêm Mới Image SP</b-button
         >
       </b-col>
@@ -45,9 +50,14 @@
                 variant="primary"
                 @click="(showEdit = true), (id = a.id)"
               >
-                Sửa
+                Detail
               </b-button>
-              <b-button variant="danger" size="sm" @click="deleteSP(a.id)">
+              <b-button
+                variant="danger"
+                size="sm"
+                @click="deleteSP(a.id)"
+                v-if="$hasPermission('delete')"
+              >
                 Xóa
               </b-button>
             </b-button-group>

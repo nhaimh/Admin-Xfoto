@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from "vuex";
+import { mapActions, mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "NuxtBlackDashboardMasterLogin",
@@ -65,7 +65,9 @@ export default {
       password: "",
     };
   },
-
+  computed: {
+    ...mapGetters(["Info"]),
+  },
   methods: {
     ...mapMutations(["SET_TOKEN"]),
     ...mapActions(["userLogin"]),

@@ -12,18 +12,15 @@
               <a>Fullname</a>
               <b-input v-model="user.fullName"></b-input>
               <a>UserName</a>
-              <b-input v-model="user.userName" type="email"></b-input>
+              <b-input v-model="user.userName"></b-input>
               <a>Email</a>
-              <b-input v-model="user.email" type="email"></b-input>
+              <b-input v-model="user.email"></b-input>
               <a>emailConfirmed</a>
-              <b-input v-model="user.emailConfirmed" type="boolean"></b-input>
+              <b-input v-model="user.emailConfirmed"></b-input>
               <a>PhoneNumber</a>
               <b-input v-model="user.phoneNumber"></b-input>
               <a>PhoneNumberConfirmed</a>
-              <b-input
-                v-model="user.phoneNumberConfirmed"
-                type="boolean"
-              ></b-input>
+              <b-input v-model="user.phoneNumberConfirmed"></b-input>
               <label for="role-select">Select Authorization Role</label>
               <b-form-select
                 size="sm"
@@ -45,7 +42,9 @@
             <b-button @click="$emit('close-detail')" variant="danger"
               >Close</b-button
             >
-            <b-button @click="updateUu()"> Update </b-button>
+            <b-button @click="updateUu()" v-if="$hasPermission('delete')">
+              Update
+            </b-button>
           </footer>
         </div>
       </div>

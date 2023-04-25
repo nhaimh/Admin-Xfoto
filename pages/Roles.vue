@@ -19,7 +19,11 @@
             <td scope="col">{{ a.normalizedName }}</td>
             <td scope="col">{{ a.concurrencyStamp }}</td>
             <td>
-              <b-button size="sm" @click="(showPer = true), (perRole = a.name)">
+              <b-button
+                size="sm"
+                @click="(showPer = true), (perRole = a.name)"
+                variant="primary"
+              >
                 Detail
               </b-button>
             </td>

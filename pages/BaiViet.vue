@@ -2,7 +2,12 @@
   <div>
     <b-row>
       <b-col cols="8">
-        <b-button size="sm" variant="outline-primary" @click="showEdit = true">
+        <b-button
+          size="sm"
+          variant="outline-primary"
+          @click="showEdit = true"
+          v-if="$hasPermission('create')"
+        >
           Thêm Mới Bài Viết</b-button
         >
       </b-col>
@@ -47,20 +52,18 @@
             <b-button-group>
               <b-button
                 size="sm"
-                variant="outline-primary"
-                @click="(showDetail = true), getByIdBlog(a.id)"
-              >
-                Chi tiết
-              </b-button>
-
-              <b-button
-                size="sm"
                 variant="primary"
                 @click="(showEdit = true), (id = a.id)"
+                v-if="$hasPermission('view')"
               >
-                Sửa
+                Detail
               </b-button>
-              <b-button variant="danger" size="sm" @click="deletE(a.id)">
+              <b-button
+                variant="danger"
+                size="sm"
+                @click="deletE(a.id)"
+                v-if="$hasPermission('delete')"
+              >
                 Xóa
               </b-button>
             </b-button-group>
@@ -74,11 +77,7 @@
         aria-controls="my-table"
       ></b-pagination>
     </table>
-    <detail
-      v-if="showDetail"
-      v-show="showDetail"
-      @close-modal="showDetail = false"
-    />
+
     <EditBV
       v-if="showEdit"
       v-show="showEdit"

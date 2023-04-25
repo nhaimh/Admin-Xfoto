@@ -64,7 +64,7 @@ export default {
   methods: {
     updatePer() {
       console.log();
-      this.showPer;
+      this.$emit("close-per", false);
     },
   },
 };

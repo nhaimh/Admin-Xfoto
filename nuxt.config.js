@@ -66,7 +66,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [`~/plugins/dashboard-plugin.js`, `~/plugins/axios.js`],
+  plugins: [`~/plugins/dashboard-plugin.js`, `~/plugins/axios.js`, '~/plugins/permission.js'],
   // Auto import components: https://go.nuxtjs.dev/config-components
   /*
    ** Nuxt.js dev-modules

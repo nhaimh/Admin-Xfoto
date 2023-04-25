@@ -140,6 +140,7 @@ export default {
       return this.$route.path === "/maps/full-screen";
     },
   },
+
   methods: {
     toggleSidebar() {
       if (this.$sidebar.showSidebar) {

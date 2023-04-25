@@ -22,7 +22,10 @@
             <b-button @click="$emit('close-modal')" variant="danger"
               >Close</b-button
             >
-            <b-button variant="outline-primary" @click="updateeI()"
+            <b-button
+              variant="outline-primary"
+              @click="updateeI()"
+              v-if="$hasPermission('edit')"
               >Update</b-button
             >
           </footer>

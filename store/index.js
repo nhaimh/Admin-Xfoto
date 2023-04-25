@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import axios from 'axios'
+import jwt_decode from "jwt-decode";
 const createStore = () => {
     // eslint-disable-next-line import/no-named-as-default-member
     return new Vuex.Store({
@@ -20,6 +21,10 @@ const createStore = () => {
             user: {},
 
             Roles: [],
+
+            Info: {},
+
+            Role: [],
         },
         mutations: {
 
@@ -90,10 +95,17 @@ const createStore = () => {
             //Roles
             GET_R(state, Roles) {
                 state.Roles = Roles
+            },
+            GET_USERINFO(state, Info) {
+                state.Info = Info
             }
 
         },
         getters: {
+            Info(state) {
+                return state.Info
+            },
+
             Roles(state) {
                 return state.Roles
             },
@@ -150,18 +162,28 @@ const createStore = () => {
                     console.log(error)
                 }
             },
-
+            // async getUserInfo({ commit }) {
+            //     try {
+            //         debugger
+            //         const res = await this.$axios.get(process.env.baseApiUrl + `Authenticate`)
+            //         commit("GET_USERINFO", res.data)
+            //     } catch (error) {
+            //         console.log(error)
+            //     }
+            // },
             async userLogin({ commit }, cccc) {
                 const res = await axios.post(process.env.baseApiUrl + `Authenticate/login`, cccc)
                 const output = res;
                 this.$cookies.set('token', output.data.token);
                 this.token = output.data;
+                this.$cookies.set('Role', output.data.roles);
+                this.Role = output.data.roles
             },
             userLogout() {
                 this.token = '';
                 this.$cookies.remove('token');
-
             },
+
             async getU({ commit }, param) {
                 try {
                     const response = await this.$axios.post(process.env.baseApiUrl + `Authenticate`, param)
